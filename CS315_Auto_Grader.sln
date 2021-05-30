@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS315_Auto_Grader", "CS315_Auto_Grader\CS315_Auto_Grader.csproj", "{B56C9ADE-0B42-4C24-B1DC-7C2728EAA435}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B56C9ADE-0B42-4C24-B1DC-7C2728EAA435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B56C9ADE-0B42-4C24-B1DC-7C2728EAA435}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B56C9ADE-0B42-4C24-B1DC-7C2728EAA435}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B56C9ADE-0B42-4C24-B1DC-7C2728EAA435}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EE2F77F5-08E6-4287-BE30-B061532C3B45}
+	EndGlobalSection
+EndGlobal
