@@ -180,7 +180,7 @@ namespace CS315_Auto_Grader
             if (output.Contains("FC: no differences encountered"))
                 AddLog("PASSED");
             else
-                AddLog("FAIELD OUTPUT MISMATCH: " + output);
+                AddLog("FAILED OUTPUT MISMATCH: " + output);
         }
 
         private void TestAllBtn_Click(object sender, EventArgs e)
