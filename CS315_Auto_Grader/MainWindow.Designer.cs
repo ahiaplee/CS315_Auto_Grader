@@ -40,6 +40,7 @@ namespace CS315_Auto_Grader
             this.SaveLogBtn = new System.Windows.Forms.Button();
             this.UpperPanel = new System.Windows.Forms.Panel();
             this.LowerPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.UpperPanel.SuspendLayout();
             this.LowerPanel.SuspendLayout();
             this.SuspendLayout();
@@ -47,11 +48,11 @@ namespace CS315_Auto_Grader
             // BrowseBtn
             // 
             this.BrowseBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BrowseBtn.Location = new System.Drawing.Point(512, 6);
+            this.BrowseBtn.Location = new System.Drawing.Point(610, 6);
             this.BrowseBtn.Name = "BrowseBtn";
-            this.BrowseBtn.Size = new System.Drawing.Size(122, 23);
+            this.BrowseBtn.Size = new System.Drawing.Size(49, 23);
             this.BrowseBtn.TabIndex = 1;
-            this.BrowseBtn.Text = "Browse";
+            this.BrowseBtn.Text = "...";
             this.BrowseBtn.UseVisualStyleBackColor = true;
             this.BrowseBtn.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -61,7 +62,7 @@ namespace CS315_Auto_Grader
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FolderPathTbx.Location = new System.Drawing.Point(3, 6);
             this.FolderPathTbx.Name = "FolderPathTbx";
-            this.FolderPathTbx.Size = new System.Drawing.Size(503, 20);
+            this.FolderPathTbx.Size = new System.Drawing.Size(601, 20);
             this.FolderPathTbx.TabIndex = 2;
             this.FolderPathTbx.TextChanged += new System.EventHandler(this.FolderPathTbx_TextChanged);
             // 
@@ -73,7 +74,8 @@ namespace CS315_Auto_Grader
             this.FileListBox.FormattingEnabled = true;
             this.FileListBox.Location = new System.Drawing.Point(2, 32);
             this.FileListBox.Name = "FileListBox";
-            this.FileListBox.Size = new System.Drawing.Size(504, 173);
+            this.FileListBox.Size = new System.Drawing.Size(602, 173);
+            this.FileListBox.Sorted = true;
             this.FileListBox.TabIndex = 3;
             // 
             // LogListBox
@@ -84,13 +86,13 @@ namespace CS315_Auto_Grader
             this.LogListBox.FormattingEnabled = true;
             this.LogListBox.Location = new System.Drawing.Point(3, 3);
             this.LogListBox.Name = "LogListBox";
-            this.LogListBox.Size = new System.Drawing.Size(636, 160);
+            this.LogListBox.Size = new System.Drawing.Size(734, 160);
             this.LogListBox.TabIndex = 4;
             // 
             // TestSelectedBtn
             // 
             this.TestSelectedBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TestSelectedBtn.Location = new System.Drawing.Point(512, 35);
+            this.TestSelectedBtn.Location = new System.Drawing.Point(610, 35);
             this.TestSelectedBtn.Name = "TestSelectedBtn";
             this.TestSelectedBtn.Size = new System.Drawing.Size(122, 23);
             this.TestSelectedBtn.TabIndex = 5;
@@ -101,7 +103,7 @@ namespace CS315_Auto_Grader
             // TestAllBtn
             // 
             this.TestAllBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.TestAllBtn.Location = new System.Drawing.Point(512, 64);
+            this.TestAllBtn.Location = new System.Drawing.Point(610, 64);
             this.TestAllBtn.Name = "TestAllBtn";
             this.TestAllBtn.Size = new System.Drawing.Size(122, 23);
             this.TestAllBtn.TabIndex = 6;
@@ -112,7 +114,7 @@ namespace CS315_Auto_Grader
             // ClearLogBtn
             // 
             this.ClearLogBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ClearLogBtn.Location = new System.Drawing.Point(564, 167);
+            this.ClearLogBtn.Location = new System.Drawing.Point(662, 167);
             this.ClearLogBtn.Name = "ClearLogBtn";
             this.ClearLogBtn.Size = new System.Drawing.Size(75, 23);
             this.ClearLogBtn.TabIndex = 7;
@@ -123,7 +125,7 @@ namespace CS315_Auto_Grader
             // SaveLogBtn
             // 
             this.SaveLogBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveLogBtn.Location = new System.Drawing.Point(486, 167);
+            this.SaveLogBtn.Location = new System.Drawing.Point(584, 167);
             this.SaveLogBtn.Name = "SaveLogBtn";
             this.SaveLogBtn.Size = new System.Drawing.Size(75, 23);
             this.SaveLogBtn.TabIndex = 8;
@@ -141,13 +143,14 @@ namespace CS315_Auto_Grader
             this.UpperPanel.Controls.Add(this.SaveLogBtn);
             this.UpperPanel.Location = new System.Drawing.Point(13, 233);
             this.UpperPanel.Name = "UpperPanel";
-            this.UpperPanel.Size = new System.Drawing.Size(642, 193);
+            this.UpperPanel.Size = new System.Drawing.Size(740, 193);
             this.UpperPanel.TabIndex = 9;
             // 
             // LowerPanel
             // 
             this.LowerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.LowerPanel.Controls.Add(this.button1);
             this.LowerPanel.Controls.Add(this.FileListBox);
             this.LowerPanel.Controls.Add(this.FolderPathTbx);
             this.LowerPanel.Controls.Add(this.TestAllBtn);
@@ -155,14 +158,25 @@ namespace CS315_Auto_Grader
             this.LowerPanel.Controls.Add(this.TestSelectedBtn);
             this.LowerPanel.Location = new System.Drawing.Point(13, 12);
             this.LowerPanel.Name = "LowerPanel";
-            this.LowerPanel.Size = new System.Drawing.Size(642, 215);
+            this.LowerPanel.Size = new System.Drawing.Size(740, 215);
             this.LowerPanel.TabIndex = 10;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(665, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(67, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Refresh";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 450);
+            this.ClientSize = new System.Drawing.Size(765, 450);
             this.Controls.Add(this.LowerPanel);
             this.Controls.Add(this.UpperPanel);
             this.Name = "MainWindow";
@@ -186,6 +200,7 @@ namespace CS315_Auto_Grader
         private System.Windows.Forms.Button SaveLogBtn;
         private System.Windows.Forms.Panel UpperPanel;
         private System.Windows.Forms.Panel LowerPanel;
+        private System.Windows.Forms.Button button1;
     }
 }
 

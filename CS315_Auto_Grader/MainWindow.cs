@@ -86,7 +86,7 @@ namespace CS315_Auto_Grader
 
         private void FolderPathTbx_TextChanged(object sender, EventArgs e)
         {
-            ScanForZip();
+           
         }
 
         void AddLog(string msg)
@@ -104,6 +104,13 @@ namespace CS315_Auto_Grader
             {
 
                 FileListBox.Items.Add(Path.GetFileName(file));
+            }
+
+            files = Directory.GetFiles(FolderPathTbx.Text, "*.s", SearchOption.AllDirectories);
+            foreach (var file in files)
+            {
+
+                FileListBox.Items.Add(file);
             }
         }
 
@@ -154,7 +161,7 @@ namespace CS315_Auto_Grader
         {
             string output, error;
 
-            string args = "main.c " + additional_files;
+            string args = "main.c " + "\"" + additional_files + "\"";
 
             if (!Execute_Program("gcc", args, out output, out error))
             {
@@ -181,6 +188,9 @@ namespace CS315_Auto_Grader
                 AddLog("PASSED");
             else
                 AddLog("FAILED OUTPUT MISMATCH: " + output);
+
+
+            AddLog("=========================================");
         }
 
         private void TestAllBtn_Click(object sender, EventArgs e)
@@ -196,6 +206,7 @@ namespace CS315_Auto_Grader
 
         void TestItem(string item)
         {
+            AddLog("=========================================");
             AddLog("Testing : " + item + "...");
 
             string name = Path.GetFileNameWithoutExtension(item);
@@ -212,25 +223,40 @@ namespace CS315_Auto_Grader
                 File.Delete(file);
             }
 
-            var actual_file = Directory.GetFiles(FolderPathTbx.Text, item, SearchOption.AllDirectories);
-
-            if(actual_file.Length == 0)
+            if(item.Contains(".zip"))
             {
-                AddLog("ERROR finding zip file to extract");
-                return;
-            }   
+                var actual_file = Directory.GetFiles(FolderPathTbx.Text, item, SearchOption.AllDirectories);
 
-            ZipFile.ExtractToDirectory(actual_file[0], FolderPathTbx.Text);
+                if (actual_file.Length == 0)
+                {
+                    AddLog("ERROR finding zip file to extract");
+                    return;
+                }
 
+                ZipFile.ExtractToDirectory(actual_file[0], FolderPathTbx.Text);
 
-            //Debug.Write(FolderPathTbx.Text + '\\' + Path.GetFileNameWithoutExtension(item));
+                //Debug.Write(FolderPathTbx.Text + '\\' + Path.GetFileNameWithoutExtension(item));
 
-            if (Directory.Exists(FolderPathTbx.Text + '\\' + name))
-            {
-                TestGrade(FolderPathTbx.Text + '\\' + name + "\\square-root.s");
+                if (Directory.Exists(FolderPathTbx.Text + '\\' + name))
+                {
+                    TestGrade(FolderPathTbx.Text + '\\' + name + "\\square-root.s");
+                }
+                else
+                {
+                    AddLog("Top Level folder missing!");
+                    
+                    TestGrade(FolderPathTbx.Text + '\\' + "square-root.s");
+                }
+                   
             }
             else
-                AddLog("Top Level folder missing!");
+            {
+                AddLog("Zip file missing!");
+                TestGrade(item);
+            }
+
+
+
         }
 
         private void ClearLogBtn_Click(object sender, EventArgs e)
@@ -259,6 +285,11 @@ namespace CS315_Auto_Grader
             }
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ScanForZip();
         }
     }
 }
