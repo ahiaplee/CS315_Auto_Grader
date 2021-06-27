@@ -18,10 +18,17 @@ namespace CS315_Auto_Grader
         public MainWindow()
         {
             InitializeComponent();
+
+            A1 = new Assignment1(this);
+            A2 = new Assignment2(this);
+            currentAssignment = A1;
+
+            if (this.AssignmentSel.Items.Count > 0)
+                this.AssignmentSel.SelectedItem = this.AssignmentSel.Items[0];
         }
 
 
-        bool Execute_Program(string filename, string args, out string output, out string error)
+        public bool Execute_Program(string filename, string args, out string output, out string error)
         {
             // Start the child process.
             Process p = new Process();
@@ -89,29 +96,31 @@ namespace CS315_Auto_Grader
            
         }
 
-        void AddLog(string msg)
+        public void AddLog(string msg)
         {
             LogListBox.Items.Add(msg);
         }
 
-        void ScanForZip()
+        public void ScanForZip()
         {
-            var files = Directory.GetFiles(FolderPathTbx.Text, "*.zip", SearchOption.AllDirectories);
-            LogListBox.Items.Add("Scanning " + FolderPathTbx.Text + " for zip files");
+            currentAssignment.ScanForZip(FileListBox, FolderPathTbx);
 
-            FileListBox.Items.Clear();
-            foreach (var file in files)
-            {
+            //var files = Directory.GetFiles(FolderPathTbx.Text, "*.zip", SearchOption.AllDirectories);
+            //LogListBox.Items.Add("Scanning " + FolderPathTbx.Text + " for zip files");
 
-                FileListBox.Items.Add(Path.GetFileName(file));
-            }
+            //FileListBox.Items.Clear();
+            //foreach (var file in files)
+            //{
 
-            files = Directory.GetFiles(FolderPathTbx.Text, "*.s", SearchOption.AllDirectories);
-            foreach (var file in files)
-            {
+            //    FileListBox.Items.Add(Path.GetFileName(file));
+            //}
 
-                FileListBox.Items.Add(file);
-            }
+            //files = Directory.GetFiles(FolderPathTbx.Text, "*.s", SearchOption.AllDirectories);
+            //foreach (var file in files)
+            //{
+
+            //    FileListBox.Items.Add(file);
+            //}
         }
 
         private void TestSelectedBtn_Click(object sender, EventArgs e)
@@ -122,89 +131,64 @@ namespace CS315_Auto_Grader
 
             string item = (string) FileListBox.SelectedItem;
 
-
-            TestItem(item);
+            currentAssignment.TestSingle(item, FolderPathTbx);
+            //TestItem(item);
 
 
             return;
-            
-
-            string name = Path.GetFileNameWithoutExtension(item);
-
-            if (Directory.Exists(FolderPathTbx.Text + '\\' + name))
-            {
-                Directory.Delete(FolderPathTbx.Text + '\\' + name, true);
-            }
-
-
-            var files = Directory.GetFiles(FolderPathTbx.Text, "*.s", SearchOption.TopDirectoryOnly);
-
-            foreach (var file in files)
-            {
-                File.Delete(file);
-            }
-
-            ZipFile.ExtractToDirectory(FolderPathTbx.Text +  '\\' + item, FolderPathTbx.Text);
-
-
-            //Debug.Write(FolderPathTbx.Text + '\\' + Path.GetFileNameWithoutExtension(item));
-
-            if (Directory.Exists(FolderPathTbx.Text + '\\' + name))
-            {
-                TestGrade(FolderPathTbx.Text + '\\' + name + "\\square-root.s");
-            }
-            else
-                AddLog("Top Level folder missing!");
         }
 
-        void TestGrade(string additional_files)
+        public void TestGrade(string additional_files)
         {
-            string output, error;
+            currentAssignment.TestGrade(additional_files);
 
-            string args = "main.c " + "\"" + additional_files + "\"";
+            //string output, error;
 
-            if (!Execute_Program("gcc", args, out output, out error))
-            {
-                AddLog("COMPILE ERROR :" + error);
-                return;
-            }
-                
-            if(!Execute_Program("a.exe", "", out output, out error))
-            {
-                AddLog("EXECUTION ERROR :" + error);
-                return;
-            }
-            
+            //string args = "main.c " + "\"" + additional_files + "\"";
 
-            using (StreamWriter writer = new StreamWriter("myout.txt"))
-            {
-                writer.WriteLine(output);
-            }
+            //if (!Execute_Program("gcc", args, out output, out error))
+            //{
+            //    AddLog("COMPILE ERROR :" + error);
+            //    return;
+            //}
 
-            Execute_Program("FC", "/w out.txt myout.txt", out output, out error);
+            //if(!Execute_Program("a.exe", "", out output, out error))
+            //{
+            //    AddLog("EXECUTION ERROR :" + error);
+            //    return;
+            //}
 
 
-            if (output.Contains("FC: no differences encountered"))
-                AddLog("PASSED");
-            else
-                AddLog("FAILED OUTPUT MISMATCH: " + output);
+            //using (StreamWriter writer = new StreamWriter("myout.txt"))
+            //{
+            //    writer.WriteLine(output);
+            //}
+
+            //Execute_Program("FC", "/w out.txt myout.txt", out output, out error);
 
 
-            AddLog("=========================================");
+            //if (output.Contains("FC: no differences encountered"))
+            //    AddLog("PASSED");
+            //else
+            //    AddLog("FAILED OUTPUT MISMATCH: " + output);
+
+
+            //AddLog("=========================================");
         }
 
         private void TestAllBtn_Click(object sender, EventArgs e)
         {
-            foreach (var entry in FileListBox.Items)
-            {
-                string item = (string)entry;
-                TestItem(item);
-            }
+            currentAssignment.TestAll(FileListBox, FolderPathTbx);
+            //foreach (var entry in FileListBox.Items)
+            //{
+            //    string item = (string)entry;
+            //    TestItem(item);
+            //}
 
-            AddLog("Test All Done!");
+            //AddLog("Test All Done!");
         }
 
-        void TestItem(string item)
+        public void TestItem(string item)
         {
             AddLog("=========================================");
             AddLog("Testing : " + item + "...");
@@ -290,6 +274,28 @@ namespace CS315_Auto_Grader
         private void button1_Click(object sender, EventArgs e)
         {
             ScanForZip();
+        }
+
+        private void AssignmentSel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (AssignmentSel.SelectedIndex)
+            {
+                case 0:
+                    currentAssignment = A1;
+                    break;
+                case 1:
+                    currentAssignment = A2;
+                    break;
+                default:
+                    currentAssignment = A1;
+                    break;
+            }
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            currentAssignment.TestFolders(FileListBox, FolderPathTbx, "");
         }
     }
 }

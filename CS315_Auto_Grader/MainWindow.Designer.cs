@@ -40,7 +40,10 @@ namespace CS315_Auto_Grader
             this.SaveLogBtn = new System.Windows.Forms.Button();
             this.UpperPanel = new System.Windows.Forms.Panel();
             this.LowerPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.AssignmentSel = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.UpperPanel.SuspendLayout();
             this.LowerPanel.SuspendLayout();
             this.SuspendLayout();
@@ -150,6 +153,9 @@ namespace CS315_Auto_Grader
             // 
             this.LowerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.LowerPanel.Controls.Add(this.button2);
+            this.LowerPanel.Controls.Add(this.label1);
+            this.LowerPanel.Controls.Add(this.AssignmentSel);
             this.LowerPanel.Controls.Add(this.button1);
             this.LowerPanel.Controls.Add(this.FileListBox);
             this.LowerPanel.Controls.Add(this.FolderPathTbx);
@@ -161,6 +167,31 @@ namespace CS315_Auto_Grader
             this.LowerPanel.Size = new System.Drawing.Size(740, 215);
             this.LowerPanel.TabIndex = 10;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(623, 129);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(94, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Select Assignment";
+            // 
+            // AssignmentSel
+            // 
+            this.AssignmentSel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.AssignmentSel.FormattingEnabled = true;
+            this.AssignmentSel.Items.AddRange(new object[] {
+            "Assignment 1",
+            "Assignment 2",
+            "Assignment 3",
+            "Assignment 4"});
+            this.AssignmentSel.Location = new System.Drawing.Point(610, 145);
+            this.AssignmentSel.Name = "AssignmentSel";
+            this.AssignmentSel.Size = new System.Drawing.Size(121, 21);
+            this.AssignmentSel.TabIndex = 8;
+            this.AssignmentSel.SelectedIndexChanged += new System.EventHandler(this.AssignmentSel_SelectedIndexChanged);
+            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -171,6 +202,16 @@ namespace CS315_Auto_Grader
             this.button1.Text = "Refresh";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(610, 93);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(121, 23);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Check Folders";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // MainWindow
             // 
@@ -201,6 +242,13 @@ namespace CS315_Auto_Grader
         private System.Windows.Forms.Panel UpperPanel;
         private System.Windows.Forms.Panel LowerPanel;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox AssignmentSel;
+
+        private Assignment currentAssignment;
+        private Assignment1 A1;
+        private Assignment2 A2;
+        private System.Windows.Forms.Button button2;
     }
 }
 
