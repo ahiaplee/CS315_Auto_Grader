@@ -40,10 +40,10 @@ namespace CS315_Auto_Grader
             this.SaveLogBtn = new System.Windows.Forms.Button();
             this.UpperPanel = new System.Windows.Forms.Panel();
             this.LowerPanel = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.AssignmentSel = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.UpperPanel.SuspendLayout();
             this.LowerPanel.SuspendLayout();
             this.SuspendLayout();
@@ -167,6 +167,18 @@ namespace CS315_Auto_Grader
             this.LowerPanel.Size = new System.Drawing.Size(740, 215);
             this.LowerPanel.TabIndex = 10;
             // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(610, 93);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(121, 23);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Check Folders";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -203,16 +215,6 @@ namespace CS315_Auto_Grader
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(610, 93);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Check Folders";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,6 +250,8 @@ namespace CS315_Auto_Grader
         private Assignment currentAssignment;
         private Assignment1 A1;
         private Assignment2 A2;
+        private Assignment3 A3;
+        private Assignment4 A4;
         private System.Windows.Forms.Button button2;
     }
 }

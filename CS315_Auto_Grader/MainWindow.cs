@@ -21,6 +21,8 @@ namespace CS315_Auto_Grader
 
             A1 = new Assignment1(this);
             A2 = new Assignment2(this);
+            A3 = new Assignment3(this);
+            A4 = new Assignment4(this);
             currentAssignment = A1;
 
             if (this.AssignmentSel.Items.Count > 0)
@@ -285,6 +287,12 @@ namespace CS315_Auto_Grader
                     break;
                 case 1:
                     currentAssignment = A2;
+                    break;
+                case 2:
+                    currentAssignment = A3;
+                    break;
+                case 3:
+                    currentAssignment = A4;
                     break;
                 default:
                     currentAssignment = A1;
